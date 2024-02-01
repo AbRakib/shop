@@ -1,6 +1,6 @@
 @php
-    $totalDebit = 0;
-    $totalCredit = 0;
+    $todayDebit = 0;
+    $todayCredit = 0;
 @endphp
 @extends('app')
 @section('content')
@@ -12,6 +12,7 @@
                 class="fas fa-backward fa-sm text-white-50"></i> Back To Dashboard</a>
     </div>
 
+    <div>Today Collections</div>
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
@@ -20,12 +21,12 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Earnings</div>
+                                today Earnings</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                ${{ $totalIncome - $totalExpense }}
-                                @if ($totalIncome > $totalExpense)
+                                ${{ $todayIncome - $todayExpense }}
+                                @if ($todayIncome > $todayExpense)
                                     <sup class="text-success">Profit</sup>
-                                @elseif($totalIncome < $totalExpense)
+                                @elseif($todayIncome < $todayExpense)
                                     <sup class="text-danger">Lose</sup>
                                 @else 
                                     <sup class="text-pending">Equal</sup>
@@ -48,8 +49,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Total Income Amount</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $totalIncome }}</div>
+                                today Income Amount</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $todayIncome }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -66,8 +67,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                Total Expense Amount</div>
-                            <div class="h5 mb-0 font-weight-bold text-danger">${{$totalExpense}}</div>
+                                today Expense Amount</div>
+                            <div class="h5 mb-0 font-weight-bold text-danger">${{$todayExpense}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -85,7 +86,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Pending Loan Amount</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{$totalLoan}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{$todayLoan}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -95,6 +96,92 @@
             </div>
         </div>
     </div>
+
+    <div>Month Collections</div>
+    <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Month Earnings</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                ${{ $monthIncome - $monthExpense }}
+                                @if ($monthIncome > $monthExpense)
+                                    <sup class="text-success">Profit</sup>
+                                @elseif($monthIncome < $monthExpense)
+                                    <sup class="text-danger">Lose</sup>
+                                @else 
+                                    <sup class="text-pending">Equal</sup>
+                                @endif
+                                
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                month Income Amount</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $monthIncome }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                month Expense Amount</div>
+                            <div class="h5 mb-0 font-weight-bold text-danger">${{$monthExpense}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Pending Loan Amount</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{$monthLoan}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-md-12 card p-2">
