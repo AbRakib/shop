@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller {
@@ -50,7 +51,8 @@ class MemberController extends Controller {
      */
     public function show( Member $member, $id ) {
         $customer = Member::findOrFail($id);
-        return view('customer.show', compact('customer'));
+        $transactions = Transaction::where('member_id', $id)->get();
+        return view('customer.show', compact('transactions', 'customer'));
     }
 
     /**

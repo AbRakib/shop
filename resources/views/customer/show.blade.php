@@ -43,7 +43,6 @@
                                             <td>{{$transaction->created_at->format('d M Y')}}</td>
                                         </tr>
                                     @endforeach
-                                    
                                 </tbody>
                             </table>
                         </div>

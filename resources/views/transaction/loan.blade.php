@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">loans</h1>
+        <h1 class="h3 mb-0 text-gray-800">Loans</h1>
         <a href="{{route('dashboard')}}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
                 class="fas fa-backward fa-sm text-white-50"></i> Back To Dashboard</a>
     </div>
@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="card o-hidden border-0 shadow-lg my-5">
-                    <h3 class="pt-4 text-center"><i class="fab fa-amazon-pay"></i> New loan</h3>
+                    <h3 class="pt-4 text-center"><i class="fab fa-amazon-pay"></i> Loan List</h3>
                     <div class="text-center text-success">(Friends)</div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-5">
                 <div class="card o-hidden border-0 shadow-lg my-5">
-                    <h3 class="pt-4 text-center"><i class="fab fa-amazon-pay"></i> New loan</h3>
+                    <h3 class="pt-4 text-center"><i class="fab fa-amazon-pay"></i> New Loan</h3>
                     <div class="text-center text-success">(Friends)</div>
                     <div class="card-body">
                         <form action="{{route('loan.store')}}" method="post" enctype="multipart/form-data">
