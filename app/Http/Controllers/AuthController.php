@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Loan;
+use App\Models\Member;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +53,24 @@ class AuthController extends Controller {
      * Dashboard view
      */
     public function dashboard() {
-        return view('dashboard');
+        $totalLoan = Loan::where('status', 0)->sum('amount');
+
+        //expense total
+        $membersExpense = Member::where('member_type', 2)->get();
+        $totalExpense = 0;
+        foreach ($membersExpense as $member) {
+            $totalExpense += Transaction::where('member_id', $member->id)->sum('amount');
+        }
+
+        // income total
+        $membersIncome = Member::where('member_type', 1)->get();
+        $totalIncome = 0;
+        foreach ($membersIncome as $member) {
+            $totalIncome += Transaction::where('member_id', $member->id)->sum('amount');
+        }
+
+        // return data
+        return view('dashboard', compact('totalLoan', 'totalExpense', 'totalIncome'));
     }
 
     /**

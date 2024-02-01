@@ -8,30 +8,24 @@ use App\Models\Transaction;
 
 class ReportController extends Controller {
     public function index() {
-        $members = Member::where('member_type', 1)->get();
-        $membersCredit = Member::where('member_type', 2)->get();
-        $debitData = [];
-        $creditData = [];
-
-        foreach ($members as $member) {
-            $debit = Transaction::where('member_id', $member->id)->sum('amount');
-            $debitData[] = [
-                'name' => $member->name,
-                'id' => $member->id,
-                'debit' => $debit,
-            ];
+        $totalLoan = Loan::where('status', 0)->sum('amount');
+        //expense total
+        $membersExpense = Member::where('member_type', 2)->get();
+        $totalExpense = 0;
+        foreach ($membersExpense as $member) {
+            $totalExpense += Transaction::where('member_id', $member->id)->sum('amount');
         }
-
-        foreach ($membersCredit as $memberCredit) {
-            $credit = Transaction::where('member_id', $memberCredit->id)->sum('amount');
-            $creditData[] = [
-                'name' => $member->name,
-                'id' => $member->id,
-                'credit' => $credit,
-            ];
+        // income total
+        $membersIncome = Member::where('member_type', 1)->get();
+        $totalIncome = 0;
+        foreach ($membersIncome as $member) {
+            $totalIncome += Transaction::where('member_id', $member->id)->sum('amount');
         }
-
-        return view('report.index', compact('debitData', 'debit', 'creditData'));
+        // all transactions
+        $transactions = Transaction::orderBy('created_at', 'desc')->get();
+        // all loans
+        $loans = Loan::orderBy('created_at', 'desc')->get();
+        return view('report.index', compact('totalIncome', 'totalExpense', 'totalLoan', 'transactions', 'loans'));
     }
 
     public function customers() {
